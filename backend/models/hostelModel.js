@@ -17,11 +17,7 @@ const hostelSchema = new mongoose.Schema({
     require: [true,'number is required']
   } 
   ,
-  user: {
-    type: ObjectId,
-    ref: "User",
-    required: true
-  }
+  user: [userSchema]
 },{timestamps:true}) 
 
 module.exports = mongoose.model("Hostel" , hostelSchema);
