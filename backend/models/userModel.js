@@ -55,7 +55,11 @@ const userSchema = new mongoose.Schema({
         default:0
     },
 
-    Hostel : [hostelSchema],
+    Hostel: {
+        type: ObjectId,
+        ref: "Hostel",
+        required: true
+      },
 
 },{timestamps:true});
 
