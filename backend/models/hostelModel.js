@@ -5,12 +5,15 @@ const { ObjectId }= mongoose.Schema;
 const hostelSchema = new mongoose.Schema({ 
   name: { 
     type: String, 
+    trim: true,
     require: [true,'name is required']
   } 
   , 
   number: { 
     type: Number, 
     default: 0 ,
+    trim : true,
+    unique : true,
     require: [true,'number is required']
   } 
 }) 
