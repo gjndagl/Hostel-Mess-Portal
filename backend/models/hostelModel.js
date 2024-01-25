@@ -16,6 +16,12 @@ const hostelSchema = new mongoose.Schema({
     unique : true,
     require: [true,'number is required']
   } 
-}) 
+  ,
+  user: {
+    type: ObjectId,
+    ref: "User",
+    required: true
+  }
+},{timestamps:true}) 
 
 module.exports = mongoose.model("Hostel" , hostelSchema);
