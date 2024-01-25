@@ -15,7 +15,7 @@ const cookieParser = require("cookie-parser");
 
 //import routes
 
-/*mongoose.connect(process.env.DB_LINK,{useNewUrlParser: true,useUnifiedTopology: true,useCreateIndex: true
+mongoose.connect("mongodb://127.0.0.1:27017/MessDB",{useNewUrlParser: true,useUnifiedTopology: true,
 });
 
 mongoose.connection.on('connecting', () => { 
@@ -34,7 +34,7 @@ mongoose.connection.on('disconnected', () => {
   console.log('DB disconnected');
   //console.log(mongoose.connection.readyState); //logs 0
 });
-*/
+
 
 app.use(morgan('dev'));
 app.use(bodyParser.json({limit: "5mb"}));
