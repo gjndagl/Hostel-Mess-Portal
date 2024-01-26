@@ -20,7 +20,12 @@ const hostelSchema = new mongoose.Schema({
   user: [{
     type: ObjectId,
     ref: "User"
-  }]
+  }],
+
+  monthlyFee :[{
+       type:Float64Array,
+       required:true,
+  }],
 },{timestamps:true}) ;
 
 module.exports = mongoose.model("Hostel" , hostelSchema);

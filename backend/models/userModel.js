@@ -61,6 +61,11 @@ const userSchema = new mongoose.Schema({
         required: true
       },
 
+      Balance: {
+        type: Float64Array,
+        required: true
+      }
+
 },{timestamps:true});
 
 module.exports = mongoose.model("User" , userSchema);
