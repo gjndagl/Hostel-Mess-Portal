@@ -62,7 +62,7 @@ const userSchema = new mongoose.Schema({
       },
 
       Balance: {
-        type: Float64Array,
+        type:mongoose.Decimal128 ,
         required: true
       }
 

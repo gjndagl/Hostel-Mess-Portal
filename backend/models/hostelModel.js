@@ -23,7 +23,7 @@ const hostelSchema = new mongoose.Schema({
   }],
 
   monthlyFee :{
-       type:Float64Array,
+       type:mongoose.Decimal128,
        required:true,
   },
 },{timestamps:true}) ;

@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 //const ejs=require("ejs");
 const morgan=require("morgan");
 const mongoose = require("mongoose");
+const errorHandler = require("./middleware/error");
 //const errorHandler = require("./middleware/error");
 //const session=require("express-session");
 //const passport=require("passport");
@@ -14,6 +15,10 @@ var cors = require('cors');
 const cookieParser = require("cookie-parser");
 
 //import routes
+
+const authRoutes = require('./Routes/authroutes');
+const userRoutes = require('./Routes/userRoutes');
+const hostelRoutes = require('./Routes/hostelRoutes');
 
 mongoose.connect("mongodb://127.0.0.1:27017/MessDB",{useNewUrlParser: true,useUnifiedTopology: true,
 });
@@ -48,6 +53,14 @@ app.use(cors());
 /*app.use("/",function(req,res){
   res.send("Hello from node js");
 });*/
+
+app.use('/api',authRoutes); 
+app.use('/api',userRoutes);
+app.use('/api',hostelRoutes);
+
+
+
+app.use(errorHandler);
 
 //port
 const port = process.env.PORT || 3000;

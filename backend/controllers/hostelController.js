@@ -1,4 +1,4 @@
-const Hostel = require('../model/hostelModel');
+const Hostel = require('../models/hostelModel.js');
 const ErrorResponse =  require('../utils/errorResponse');
 
 exports.showHostels = async (req,res,next) =>{
