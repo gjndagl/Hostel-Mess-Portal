@@ -58,7 +58,7 @@ const userSchema = new mongoose.Schema({
     Hostel: {
         type: ObjectId,
         ref: "Hostel",
-        required: true
+       // required: true
       },
 
       Balance: {
