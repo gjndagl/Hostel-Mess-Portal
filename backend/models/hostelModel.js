@@ -22,10 +22,10 @@ const hostelSchema = new mongoose.Schema({
     ref: "User"
   }],
 
-  monthlyFee :[{
+  monthlyFee :{
        type:Float64Array,
        required:true,
-  }],
+  },
 },{timestamps:true}) ;
 
 module.exports = mongoose.model("Hostel" , hostelSchema);
