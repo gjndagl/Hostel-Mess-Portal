@@ -12,15 +12,27 @@ exports.createMenu=async(req,res,next)=>{
         const hostel=await Hostel.findById(req.params.id);
         if(!hostel)
         {
-            res.status(404).json({
-                success:true,
-                message:"Hostel not found"
-            });
+            return next(new ErrorResponse("Hostel not found", 404));
         }
          const index=daysOfWeek.indexOf(day);
 
-         hostel.menu[index].day=day;
-         hostel.menu[index].meals=meals;
+         if (index === -1) {
+            return next(new ErrorResponse("Invalid day", 400));
+        }
+
+         if (!hostel.menu[index]) {
+            hostel.menu[index] = {
+                day: day,
+                meals: meals
+            };
+        } else {
+            hostel.menu[index].day = day;
+            hostel.menu[index].meals = meals;
+        }
+
+        // Save changes to the hostel
+        await hostel.save();
+
 
         
         res.status(201).json({

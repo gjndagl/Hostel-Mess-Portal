@@ -19,6 +19,7 @@ const cookieParser = require("cookie-parser");
 const authRoutes = require('./Routes/authRoutes');
 const userRoutes = require('./Routes/userRoutes');
 const hostelRoutes = require('./Routes/hostelRoutes');
+const menuRoutes=require('./Routes/menuRoutes');
 
 mongoose.connect("mongodb://127.0.0.1:27017/MessDB",{useNewUrlParser: true,useUnifiedTopology: true,
 });
@@ -57,7 +58,7 @@ app.use(cors());
 app.use('/api',authRoutes); 
 app.use('/api',userRoutes);
 app.use('/api',hostelRoutes);
-
+app.use('/api',menuRoutes);
 
 
 app.use(errorHandler);
