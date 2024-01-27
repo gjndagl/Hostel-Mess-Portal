@@ -80,7 +80,7 @@ exports.updateMenu=async(req,res,next)=>{
     }
 }
 
-exports.deleteMealForHostel = async (req, res, next) => {
+exports.deleteMenu = async (req, res, next) => {
     try {
         const { hostelId, day } = req.params;
 
