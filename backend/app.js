@@ -16,7 +16,7 @@ const cookieParser = require("cookie-parser");
 
 //import routes
 
-const authRoutes = require('./Routes/authroutes');
+const authRoutes = require('./Routes/authRoutes');
 const userRoutes = require('./Routes/userRoutes');
 const hostelRoutes = require('./Routes/hostelRoutes');
 
