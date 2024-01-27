@@ -28,11 +28,15 @@ const hostelSchema = new mongoose.Schema({
        required:true,
   },
 
-  menu:[{
+  menu:{
+  type:[{
     type:ObjectId,
     ref: "MenuItem",
     required:true
-  }]
+  }],
+
+  default:[null,null,null,null,null,null,null]
+}
   
 },{timestamps:true}) ;
 

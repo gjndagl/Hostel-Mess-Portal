@@ -4,9 +4,22 @@ const Hostel=require('../models/hostelModel');
 
 const ErrorResponse = require("../utils/errorResponse");
 
+const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
 exports.createMenu=async(req,res,next)=>{
     try{
-        const menu=await Menu.create(req.body);
+        const {day,meals}=req.body;
+        const hostel=await Hostel.findById(req.params.id);
+        if(!hostel)
+        {
+            res.status(404).json({
+                success:true,
+                message:"Hostel not found"
+            });
+        }
+
+
+        
         res.status(201).json({
             success:true,
             menu
@@ -32,4 +45,6 @@ exports.deleteMenu=async(req,res,next)=>{
         return next(error);
     }
 }
+
+
 
