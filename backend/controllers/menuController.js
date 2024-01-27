@@ -17,12 +17,15 @@ exports.createMenu=async(req,res,next)=>{
                 message:"Hostel not found"
             });
         }
+         const index=daysOfWeek.indexOf(day);
 
+         hostel.menu[index].day=day;
+         hostel.menu[index].meals=meals;
 
         
         res.status(201).json({
             success:true,
-            menu
+            hostel
         })
     }catch(error){
         return next(error);
