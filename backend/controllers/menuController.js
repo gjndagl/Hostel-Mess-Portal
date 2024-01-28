@@ -9,7 +9,7 @@ const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Sat
 exports.createMenu=async(req,res,next)=>{
     try{
         const {day,meals}=req.body;
-        const hostel=await Hostel.findById(req.params.id);
+        const hostel=await Hostel.findById(req.params.hostelId);
         if(!hostel)
         {
             return next(new ErrorResponse("Hostel not found", 404));
@@ -40,6 +40,7 @@ exports.createMenu=async(req,res,next)=>{
             hostel
         })
     }catch(error){
+        console.log(error);
         return next(error);
     }
 }
@@ -47,7 +48,7 @@ exports.createMenu=async(req,res,next)=>{
 exports.updateMenu=async(req,res,next)=>{
     try{
         const {day,meals}=req.body;
-        const hostel=await Hostel.findById(req.params.id);
+        const hostel=await Hostel.findById(req.params.hostelId);
         if(!hostel)
         {
             return next(new ErrorResponse("Hostel not found", 404));

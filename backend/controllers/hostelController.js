@@ -50,7 +50,7 @@ exports.showHostels = async (req,res,next) =>{
 
 exports.updateHostel = async(req,res,next)=>{
     try{
-        const hostel=await Hostel.findByIdAndUpdate(req.params.id,req.body,{new:true});
+        const hostel=await Hostel.findByIdAndUpdate(req.params.hostel_id,req.body,{new:true});
         res.status(201).json({
             success:true,
             hostel
