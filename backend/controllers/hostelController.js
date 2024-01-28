@@ -1,5 +1,6 @@
 const Hostel = require('../models/hostelModel.js');
 const ErrorResponse =  require('../utils/errorResponse');
+const mongoose = require('mongoose');
 
 exports.showHostels = async (req,res,next) =>{
     //enable pagination
@@ -31,7 +32,7 @@ exports.showHostels = async (req,res,next) =>{
  exports.createHostel = async(req,res,next)=>{
     try{
         const number=req.body.number;
-        const hostel1=await findOne({number});
+        const hostel1=await Hostel.findOne({number});
         if(hostel1){
             return ErrorResponse("hostel already exists",404);
         }

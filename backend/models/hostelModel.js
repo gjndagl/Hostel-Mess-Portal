@@ -32,7 +32,7 @@ const hostelSchema = new mongoose.Schema({
   type:[{
     type:ObjectId,
     ref: "MenuItem",
-    required:true
+    //required:true
   }],
 
   default:[null,null,null,null,null,null,null]
