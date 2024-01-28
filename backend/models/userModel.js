@@ -40,13 +40,13 @@ const userSchema = new mongoose.Schema({
 
     rollNumber: {
         type: Number,
-        required: [true, 'Roll Number is required'],
+      //  required: [true, 'Roll Number is required'],
         unique:true
     },
 
     roomNo : {
         type: String,
-        required: [true, 'Room Number is required'],
+        //required: [true, 'Room Number is required'],
         unique:true
     },
 
@@ -63,7 +63,7 @@ const userSchema = new mongoose.Schema({
 
       Balance: {
         type:mongoose.Decimal128 ,
-        required: true
+        //required: true
       }
 
 },{timestamps:true});
