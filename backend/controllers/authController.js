@@ -43,6 +43,7 @@ exports.signin = async function(req,res,next){
         sendTokenResponse(user,200,res);
 
     }catch(error){
+        console.log(error);
         next(error);
     }
 }
