@@ -1,4 +1,5 @@
 const User = require('../models/userModel');
+const Hostel = require('../models/hostelModel');
 const ErrorResponse =  require('../utils/errorResponse');
 
 exports.allUsers = async (req,res,next) =>{
@@ -68,5 +69,31 @@ exports.deleteUser = async(req,res,next) => {
     }
     catch(error){
         return next(error);
+    }
+}
+
+exports.feePayment=async(req,res,next) => {
+    try{
+        const user=await User.findById(req.params.id);
+    
+        const hostel=await Hostel.findById(user.Hostel);
+      //  console.log(hostel);
+        const fee=hostel.monthlyFee;
+        const balance=user.Balance;
+        if(fee>balance)
+        {
+            return ErrorResponse("Insufficient Balance",404);
+        }
+        user.Balance=balance-fee;
+        await user.save();
+        res.status(201).json({
+            success:true,
+            user
+        });
+        next();
+    }
+    catch(error){
+       // console.log(error);
+       return next(error);
     }
 }
