@@ -41,7 +41,7 @@ const userSchema = new mongoose.Schema({
     rollNumber: {
         type: Number,
       //  required: [true, 'Roll Number is required'],
-        unique:true
+         unique:true
     },
 
     roomNo : {

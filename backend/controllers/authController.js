@@ -14,7 +14,7 @@ exports.signup = async function(req,res,next){
             user
         })
     }catch(error){
-        
+        console.log(error);
         next(error);
     }
 }
