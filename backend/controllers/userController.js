@@ -46,7 +46,7 @@ exports.singleUser = async(req,res,next)=>{
 
 exports.editUser = async(req,res,next)=>{
     try{
-        const user=await User.findByIdAndUpdate(req.params.id,req.body,{new:true});
+        const user=await User.findByIdAnsUpdate(req.params.id,req.body,{new:true});
         res.status(201).json({
             success:true,
             user
@@ -69,31 +69,5 @@ exports.deleteUser = async(req,res,next) => {
     }
     catch(error){
         return next(error);
-    }
-}
-
-exports.feePayment=async(req,res,next) => {
-    try{
-        const user=await User.findById(req.params.id);
-    
-        const hostel=await Hostel.findById(user.Hostel);
-      //  console.log(hostel);
-        const fee=hostel.monthlyFee;
-        const balance=user.Balance;
-        if(fee>balance)
-        {
-            return ErrorResponse("Insufficient Balance",404);
-        }
-        user.Balance=balance-fee;
-        await user.save();
-        res.status(201).json({
-            success:true,
-            user
-        });
-        next();
-    }
-    catch(error){
-       // console.log(error);
-       return next(error);
     }
 }
