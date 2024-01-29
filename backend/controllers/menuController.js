@@ -19,16 +19,11 @@ exports.createMenu=async(req,res,next)=>{
          if (index === -1) {
             return next(new ErrorResponse("Invalid day", 400));
         }
-
-         if (!hostel.menu[index]) {
-            hostel.menu[index] = {
-                day: day,
-                meals: meals
-            };
-        } else {
-            hostel.menu[index].day = day;
-            hostel.menu[index].meals = meals;
-        }
+       const menu=await Menu.create(req.body);
+       //await menu.save();
+        
+            hostel.menu[index] =menu;
+        
 
         // Save changes to the hostel
         await hostel.save();
