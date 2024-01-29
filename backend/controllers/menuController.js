@@ -33,7 +33,8 @@ exports.createAndUpdateMenu=async(req,res,next)=>{
         res.status(201).json({
             success:true,
             hostel
-        })
+        });
+        next();
     }catch(error){
         console.log(error);
         return next(error);
@@ -42,17 +43,21 @@ exports.createAndUpdateMenu=async(req,res,next)=>{
 
 exports.deleteMenu = async (req, res, next) => {
     try {
-        const { hostelId, dayId } = req.params;
-
+        const hostelId = req.params.hostelId;
+        const dayId=req.params.dayId-1;
+        console.log(dayId);
         // Find the hostel by ID
+        //dayId--;
         const hostel = await Hostel.findById(hostelId);
+        console.log(hostel);
         if (!hostel) {
             return next(new ErrorResponse("Hostel not found", 404));
         }
 
         // Find the index of the day in the daysOfWeek array
-        const day=daysOfWeek[dayId];
-        const index = daysOfWeek.indexOf(day);
+       // const day=daysOfWeek[dayId];
+       
+        const index = dayId;
         if (index === -1) {
             return next(new ErrorResponse("Invalid day", 400));
         }
@@ -66,9 +71,10 @@ exports.deleteMenu = async (req, res, next) => {
 
         res.status(200).json({
             success: true,
-            message: 'Meal for ${day} deleted successfully',
+            message: 'Meal successfully',
             hostel
         });
+        next();
     } catch (error) {
         console.log(error);
         next(error);
