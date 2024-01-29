@@ -23,8 +23,7 @@ exports.createMenu=async(req,res,next)=>{
        //await menu.save();
         
             hostel.menu[index] =menu;
-        
-
+      
         // Save changes to the hostel
         await hostel.save();
 
