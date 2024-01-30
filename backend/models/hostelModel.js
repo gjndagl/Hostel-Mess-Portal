@@ -36,8 +36,12 @@ const hostelSchema = new mongoose.Schema({
   }],
 
   default:[null,null,null,null,null,null,null]
-}
-  
+},
+
+chats: [{
+  type: String,
+}]
+
 },{timestamps:true}) ;
 
 

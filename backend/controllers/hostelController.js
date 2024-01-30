@@ -1,4 +1,6 @@
+const { userInfo } = require('os');
 const Hostel = require('../models/hostelModel.js');
+const User = require('../models/userModel.js');
 const ErrorResponse =  require('../utils/errorResponse');
 const mongoose = require('mongoose');
 
@@ -60,4 +62,53 @@ exports.updateHostel = async(req,res,next)=>{
     catch(error){
         return next(error);
     }
+}
+
+exports.insertChat = async(req,res,next)=>{
+    try{
+        const user = await User.findById(req.user.id).select('-password');
+        console.log(user);
+        //const hostel = await Hostel.findOne({ user: user });
+        console.log("this is first log"+user.Hostel);
+        const hostel=await Hostel.findById(user.Hostel);
+        const chat=req.body.chat;
+        console.log("this is hostel"+hostel);
+        console.log(chat);
+        if (!hostel) {
+            return res.status(404).json({ success: false, message: 'Hostel not found for the specified user' });
+        }
+
+        hostel.chats.push(chat);
+        await hostel.save();
+
+        res.status(201).json({
+            success:true,
+            hostel
+        })
+        next();
+    }
+    catch(error){
+        console.log(error);
+        return next(error);
+    }   
+}
+
+exports.allChats = async(req,res,next)=>{
+    try{
+        const user = await User.findById(req.user.id).select('-password');
+        const hostel = await Hostel.findById(user.Hostel);
+        
+        if (!hostel) {
+            return res.status(404).json({ success: false, message: 'Hostel not found for the specified user' });
+        }
+
+        res.status(201).json({
+            success:true,
+            hostel
+        })
+        next();
+    }
+    catch(error){
+        return next(error);
+    }   
 }
