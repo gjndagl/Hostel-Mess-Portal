@@ -78,7 +78,7 @@ exports.insertChat = async(req,res,next)=>{
             return res.status(404).json({ success: false, message: 'Hostel not found for the specified user' });
         }
 
-        hostel.chats.push(chat);
+        hostel.chats.push([chat,req.user.id]);
         await hostel.save();
 
         res.status(201).json({

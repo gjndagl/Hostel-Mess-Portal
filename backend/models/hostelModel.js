@@ -39,7 +39,10 @@ const hostelSchema = new mongoose.Schema({
 },
 
 chats: [{
-  type: String,
+  type: [String,{
+    type:ObjectId,
+    ref:"USer"
+  }]
 }]
 
 },{timestamps:true}) ;
