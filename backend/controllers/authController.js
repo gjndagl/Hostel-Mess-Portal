@@ -1,3 +1,4 @@
+const { stringify } = require("querystring");
 const User = require("../models/userModel");
 const ErrorResponse = require("../utils/errorResponse");
 
@@ -73,3 +74,27 @@ exports.userProfile = async (req,res,next) => {
         user
     });
 }
+
+exports.creditMoney = async (req, res, next) => {
+    try {
+        const user = await User.findById(req.user.id).select('-password');
+        const amount = Number(req.body.amount);
+
+        // Convert user.Balance to a number and then add the amount
+        user.Balance = Number(user.Balance) + amount;
+
+        // Save the updated user object
+        await user.save();
+
+        res.status(200).json({
+            success: true,
+            message: "Amount credited",
+            user
+        });
+
+        next();
+    } catch (error) {
+        console.log(error);
+        next(error);
+    }
+};
